@@ -7,12 +7,12 @@ class Solution:
         while l <= r:
             k = (l + r) // 2
             hours = 0
-            for pile in piles:
-                hours += math.ceil(pile / k)
+            for p in piles:
+                hours += math.ceil(p / k)
             if hours <= h:
-                res = min(res, k)
+                res = min(k, res) 
                 r = k - 1
             else:
-                l = k + 1
+                l = k + 1 
         return res
-        
+            
