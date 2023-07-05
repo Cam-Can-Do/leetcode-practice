@@ -3,16 +3,19 @@ class Solution:
         res = nums[0]
         l = 0
         r = len(nums) - 1
+
         while l <= r:
-            if nums[l] < nums[r]:
+            if nums[l] <= nums[r]:
                 res = min(nums[l], res)
-                break
 
             m = (l + r) // 2
             res = min(nums[m], res)
             if nums[m] >= nums[l]:
                 l = m + 1
-            else: 
+            else:
                 r = m - 1
-
+            
         return res
+            
+
+                
