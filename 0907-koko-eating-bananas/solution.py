@@ -1,18 +1,27 @@
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
-        l = 1
-        r = max(piles)
-        res = r
+        # n <= h 
+        # need to search for the correct k value (binary search) between 1 and max(piles)
+        # for each k value, need to check whether the time consumed is less than or equal to h
+        # store valid k values but continue searching while valid for lowest valid 
 
-        while l <= r:
-            k = (l + r) // 2
-            hours = 0
-            for p in piles:
-                hours += math.ceil(p / k)
-            if hours <= h:
-                res = min(k, res) 
-                r = k - 1
+        low = 1
+        high = max(piles)
+        res = high
+
+        while low <= high:
+            speed = (low + high) // 2 
+            timeUsed = 0
+            for pile in piles:
+                timeUsed += math.ceil(pile / speed)
+            if timeUsed <= h:
+                res = min(res, speed)
+                high = speed - 1
             else:
-                l = k + 1 
-        return res
-            
+                low = speed + 1
+        return res 
+
+
+                
+
+
