@@ -6,12 +6,13 @@ class Solution:
 
         while l <= r:
             m = (l + r) // 2
-            time_elapsed = 0
+            timeUsed = 0
             for pile in piles:
-                time_elapsed += math.ceil(pile / m)
-            if time_elapsed <= h:
+                timeUsed += math.ceil(pile / m)
+            if timeUsed <= h:
                 r = m - 1
                 res = min(res, m)
             else:
                 l = m + 1
         return res
+
