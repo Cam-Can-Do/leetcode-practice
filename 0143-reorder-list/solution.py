@@ -8,16 +8,15 @@ class Solution:
         """
         Do not return anything, modify head in-place instead.
         """
-
-        # split list
+        
         slow = head
         fast = head.next
-
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-
-        second = slow.next        
+        
+        # split and reverse second half
+        second = slow.next
         slow.next = prev = None
         while second:
             temp = second.next
@@ -33,4 +32,5 @@ class Solution:
             first.next = second
             second.next = temp1
             first = temp1
-            second = temp2
+            second = temp2 
+        
