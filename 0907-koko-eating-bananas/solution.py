@@ -4,15 +4,20 @@ class Solution:
         r = max(piles)
         res = r
 
+        # binary search for lowest valid speed
         while l <= r:
-            m = (l + r) // 2
-            timeUsed = 0
+            speed = (l + r) // 2
+            timeElapsed = 0
             for pile in piles:
-                timeUsed += math.ceil(pile / m)
-            if timeUsed <= h:
-                r = m - 1
-                res = min(res, m)
+                timeElapsed += math.ceil(pile / speed)
+            # valid speed, but want to keep searching for lower... move right pointer
+            if timeElapsed <= h:
+                res = min(speed, res)
+                r = speed - 1
+            # timeElapsed > h ... took too long... need to increase speed by increasing left pointer
             else:
-                l = m + 1
+                l = speed + 1
         return res
 
+
+        
