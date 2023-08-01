@@ -8,11 +8,11 @@ class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         res = []
         q = collections.deque()
+
         if root:
             q.append(root)
-        while q:
+        while len(q) > 0:
             val = []
-
             for i in range(len(q)):
                 node = q.popleft()
                 val.append(node.val)
@@ -22,3 +22,6 @@ class Solution:
                     q.append(node.right)
             res.append(val)
         return res
+                
+
+        
