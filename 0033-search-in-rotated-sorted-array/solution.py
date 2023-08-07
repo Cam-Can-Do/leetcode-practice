@@ -4,21 +4,25 @@ class Solution:
         r = len(nums) - 1
 
         while l <= r:
-            m = (l + r) // 2
+            m = (r + l) // 2
             if nums[m] == target:
                 return m
+            # section is sorted
+            if nums[m] <= nums[r]:
+                # if target is in the left half
+                if nums[m] <= target <= nums[r]:
+                    l = m + 1
+                # target is in the right half
+                else:
+                    r = m - 1
+            # section is rotated
+            else:
+                # target is in left half
+                if nums[l] <= target <= nums[m]:
+                    r = m - 1
+                # target is in right half
+                else:
+                    l = m + 1
 
-            if nums[l] <= nums[m]:   #left portion is sorted
-                if target < nums[l] or target > nums[m]:
-                    l = m + 1
-                else:
-                    r = m - 1
-            else:   # right portion is sorted
-                if target > nums[r] or target < nums[m]:
-                    r = m - 1
-                else:
-                    l = m + 1
         return -1
-
-
         
