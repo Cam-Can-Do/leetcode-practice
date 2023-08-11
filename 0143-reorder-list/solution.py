@@ -5,31 +5,36 @@
 #         self.next = next
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
-        # first need to find the middle of the list
+        # find the middle of the list and split
         slow = head
         fast = head.next
         while fast and fast.next:
             slow = slow.next
-            fast = fast.next.next 
+            fast = fast.next.next
 
-        # break the link between the halves, setup for reversing second half
+        # reverse second half
         second = slow.next
-        slow.next = prev = None
+        prev = slow.next = None
+
         while second:
             temp = second.next
             second.next = prev
             prev = second
             second = temp
         
-        # now we have prev storing the head of the second list, and head storing the head of the first
-        # need to alternate (starting with first list) and join the links together
+        # second half is reversed, new head is "prev"
         first = head
-        second = prev
+        second = prev 
         while second:
-            cur1 = first.next
-            cur2 = second.next
+            t1 = first.next
+            t2 = second.next
             first.next = second
-            second.next = cur1
-            first = cur1
-            second = cur2
+            second.next = t1
+            first = t1
+            second = t2
+        
+        
+
+
+
         
