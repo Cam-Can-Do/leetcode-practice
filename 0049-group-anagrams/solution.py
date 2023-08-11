@@ -1,19 +1,15 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        sortedToAnagrams = {}
+        groups = {}
 
         for word in strs:
-            sStr = "".join(sorted(word))
-            if sStr not in sortedToAnagrams:
-                sortedToAnagrams[sStr] = [word]
-            else: 
-                sortedToAnagrams[sStr].append(word)
-
+            my_sorted = "".join(sorted(word))
+            if my_sorted not in groups:
+                groups[my_sorted] = []
+            groups[my_sorted].append(word)
         res = []
-        for _, words in sortedToAnagrams.items():
-            templist = []
-            for word in words:
-                templist.append(word)
-            res.append(templist)
+        for _, group in groups.items():
+            res.append(group)
         return res
 
+        
