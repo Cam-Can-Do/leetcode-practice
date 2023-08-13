@@ -14,41 +14,42 @@ class Codec:
         :rtype: str
         """
 
-        res = []
-
+        nodes = []
         def dfs(root):
+            nonlocal nodes
             if not root:
-                res.append("N")
+                nodes.append("N")
                 return 
-            res.append(str(root.val))
-            dfs(root.left)
-            dfs(root.right)
-
+            else:
+                nodes.append(str(root.val))
+                dfs(root.left)
+                dfs(root.right)
         dfs(root)
-        return ",".join(res)
-            
+        return ",".join(nodes)
+
     def deserialize(self, data):
         """Decodes your encoded data to tree.
         
         :type data: str
         :rtype: TreeNode
         """
-        self.i = 0
-        values = data.split(',')
+        nodes = data.split(",")
+        i = 0
+
         def dfs():
-            if values[self.i] == "N":
-                self.i += 1
+            nonlocal i
+            if nodes[i] == "N":
+                i += 1
                 return None
-            node = TreeNode(int(values[self.i]))
-            self.i += 1
+            node = TreeNode(int(nodes[i]))
+            i += 1
             node.left = dfs()
             node.right = dfs()
             return node
         return dfs()
 
 
-
-
+        
 
 # Your Codec object will be instantiated and called as such:
 # ser = Codec()
