@@ -23,4 +23,3 @@ class Solution:
             return self.sameTree(t1.left, t2.left) and self.sameTree(t1.right, t2.right)
         return False
 
-        
