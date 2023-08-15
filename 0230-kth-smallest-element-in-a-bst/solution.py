@@ -16,6 +16,9 @@ class Solution:
             cur = stack.pop()
             k -= 1
             if k == 0:
-                return cur.val
+                break
             cur = cur.right
+        return cur.val
+        
+    
         
