@@ -3,12 +3,12 @@ class Solution:
         l = 0
         r = len(numbers) - 1
 
-        while l <= r:
-            tsum = numbers[l] + numbers[r]
-            if tsum == target:
-                return [l + 1, r + 1]
-            elif tsum > target:
+        while l < r:
+            tSum = numbers[l] + numbers[r]
+            if tSum > target:
                 r -= 1
-            else:
+            elif tSum < target:
                 l += 1
-
+            else:
+                return [l + 1, r + 1]
+        
