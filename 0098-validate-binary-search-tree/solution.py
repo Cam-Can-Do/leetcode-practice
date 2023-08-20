@@ -9,9 +9,11 @@ class Solution:
         def isValid(root, low, high):
             if not root:
                 return True
-            left = isValid(root.left, low, root.val)
-            right = isValid(root.right, root.val, high)
-            return low < root.val < high and left and right
 
-        return isValid(root, float("-inf"), float("inf"))
+            if low < root.val < high:
+                return isValid(root.left, low, root.val) and isValid(root.right, root.val, high)
+
+        return isValid(root, float('-inf'), float('inf'))
+        
+        
         
