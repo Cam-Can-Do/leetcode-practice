@@ -3,37 +3,30 @@ class Solution:
         total = len(nums1) + len(nums2)
         half = total // 2
 
-        if total == 0:
-            return 0
-
-        A = nums1
-        B = nums2
+        A, B = nums1, nums2
         if len(A) > len(B):
             A, B = B, A
 
         l = 0
         r = len(A) - 1
         while True:
-            aMiddle = (r + l) // 2
-            bMiddle = half - aMiddle - 2
-    
-            aLeft = A[aMiddle] if aMiddle >= 0 else float("-inf")
-            aRight = A[aMiddle + 1] if aMiddle + 1 < len(A) else float("inf")
-            bLeft = B[bMiddle] if bMiddle >= 0 else float("-inf")
-            bRight = B[bMiddle + 1] if bMiddle + 1 < len(B) else float("inf")
-    
-            # partition is correct
-            if aLeft <= bRight and bLeft <= aRight: 
-                # total length is even
-                if total % 2 == 0:
-                    return (max(aLeft, bLeft) + min(aRight, bRight)) / 2
-                else:
+            aMid = (r + l) // 2
+            bMid = half - aMid - 2
+
+            aLeft = A[aMid] if aMid >= 0 else float("-inf")
+            aRight = A[aMid+1] if aMid+1 < len(A) else float("inf")
+            bLeft = B[bMid] if bMid >= 0 else float("-inf")
+            bRight = B[bMid+1] if bMid+1 < len(B) else float("inf")
+        
+            # partitioning is correct
+            if aLeft <= bRight and bLeft <= aRight:
+                # if total size is even, the median is the average of the middle two elements
+                if total % 2:
                     return min(aRight, bRight)
-            # incorrect partition
-            else:
-                if aLeft > bRight:
-                    r = aMiddle - 1
+                # if total size is odd, then just return the middle element
                 else:
-                    l = aMiddle + 1
-
-
+                    return (max(aLeft, bLeft) + min(aRight, bRight)) / 2
+            elif aLeft > bRight:
+                r = aMid - 1
+            else:
+                l = aMid + 1 
