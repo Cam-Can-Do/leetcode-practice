@@ -10,16 +10,17 @@ class Solution:
         q = collections.deque([root])
 
         while q:
-            rightSide = None
             qlen = len(q)
+            rightMost = None
             for i in range(qlen):
-                node = q.popleft()
-                if node:
-                    rightSide = node
-                    q.append(node.left)
-                    q.append(node.right)
-            if rightSide:
-                res.append(rightSide.val)
+                cur = q.popleft()
+                if cur:
+                    q.append(cur.left)
+                    q.append(cur.right)
+                    rightMost = cur
+            if rightMost:
+                res.append(rightMost.val)
         return res
+
 
         
