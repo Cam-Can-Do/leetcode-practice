@@ -9,24 +9,24 @@ class Solution:
 
         l = 0
         r = len(A) - 1
-        while True:
-            aMid = (r + l) // 2
-            bMid = half - aMid - 2
 
-            aLeft = A[aMid] if aMid >= 0 else float("-inf")
-            aRight = A[aMid+1] if aMid+1 < len(A) else float("inf")
-            bLeft = B[bMid] if bMid >= 0 else float("-inf")
-            bRight = B[bMid+1] if bMid+1 < len(B) else float("inf")
-        
-            # partitioning is correct
+        while True:
+            i = (l + r) // 2
+            j = half - i - 2
+
+            aLeft = A[i] if i >= 0 else float("-inf")
+            aRight = A[i + 1] if i + 1 < len(A) else float("inf")
+            bLeft = B[j] if j >= 0 else float("-inf") 
+            bRight = B[j+1] if j + 1 < len(B) else float("inf")
+
             if aLeft <= bRight and bLeft <= aRight:
-                # if total size is even, the median is the average of the middle two elements
-                if total % 2:
-                    return min(aRight, bRight)
-                # if total size is odd, then just return the middle element
-                else:
+                if total % 2 == 0:
                     return (max(aLeft, bLeft) + min(aRight, bRight)) / 2
+                else:
+                    return min(aRight, bRight)
             elif aLeft > bRight:
-                r = aMid - 1
+                r = i - 1
             else:
-                l = aMid + 1 
+                l = i + 1
+            
+        
