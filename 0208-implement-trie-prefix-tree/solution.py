@@ -5,7 +5,7 @@ class TrieNode:
 class Trie:
     def __init__(self):
         self.root = TrieNode()
-
+        
     def insert(self, word: str) -> None:
         cur = self.root
         for letter in word:
@@ -13,7 +13,7 @@ class Trie:
                 cur.children[letter] = TrieNode()
             cur = cur.children[letter]
         cur.terminal = True
-        
+
     def search(self, word: str) -> bool:
         cur = self.root
         for letter in word:
@@ -22,8 +22,9 @@ class Trie:
             cur = cur.children[letter]
         if cur.terminal:
             return True
-        return False
-        
+        else:
+            return False
+
     def startsWith(self, prefix: str) -> bool:
         cur = self.root
         for letter in prefix:
