@@ -4,11 +4,14 @@ class Solution:
         r = len(numbers) - 1
 
         while l < r:
-            tSum = numbers[l] + numbers[r]
-            if tSum > target:
-                r -= 1
-            elif tSum < target:
+            leftVal = numbers[l] 
+            rightVal = numbers[r]
+            two_sum = leftVal + rightVal
+
+            if two_sum == target:
+                return [l+1, r+1]
+            elif two_sum < target:
                 l += 1
             else:
-                return [l + 1, r + 1]
-        
+                r -= 1
+
