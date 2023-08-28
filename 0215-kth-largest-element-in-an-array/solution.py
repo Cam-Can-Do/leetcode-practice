@@ -1,9 +1,9 @@
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        maxHeap = [-n for n in nums]
+        maxHeap = [-num for num in nums]
         heapq.heapify(maxHeap)
-        res = float('-inf')
-        for i in range(k):
-            res = heapq.heappop(maxHeap)
-        return -res
+        while k > 0 and maxHeap:
+            res = -(heapq.heappop(maxHeap))
+            k -= 1
+        return res
         
