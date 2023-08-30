@@ -4,20 +4,21 @@ class Solution:
         r = len(nums) - 1
 
         while l <= r:
-            m = (l+r) // 2
+            m = (l + r) // 2
             if nums[m] == target:
                 return m
-            # left portion sorted
-            elif nums[l] <= nums[m]:
-                if target < nums[l] or target > nums[m]:
-                    l = m + 1
-                else:
-                    r = m - 1
-            # right portion sorted
-            else:
+            
+            # right portion not sorted
+            if nums[m] < nums[r]:
                 if target > nums[r] or target < nums[m]:
                     r = m - 1
                 else:
                     l = m + 1
-        return -1 
+            else:
+                if target < nums[l] or target > nums[m]:
+                    l = m + 1
+                else:
+                    r = m - 1
+        return -1
+
         
