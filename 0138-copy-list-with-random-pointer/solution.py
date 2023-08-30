@@ -9,16 +9,19 @@ class Node:
 
 class Solution:
     def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        # first make a dict with copies of each node from original, no pointers yet
-        oldToCopy = {None:None}
+        oldToNew = {None:None}
         cur = head
         while cur:
-            oldToCopy[cur] = Node(cur.val)
+            oldToNew[cur] = Node(cur.val)
             cur = cur.next
+
         cur = head
         while cur:
-            oldToCopy[cur].next = oldToCopy[cur.next]
-            oldToCopy[cur].random = oldToCopy[cur.random]
+            oldToNew[cur].next = oldToNew[cur.next]
+            oldToNew[cur].random = oldToNew[cur.random]
             cur = cur.next
-        return oldToCopy[head]
+        return oldToNew[head]
+
+        
+
         
