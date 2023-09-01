@@ -1,24 +1,20 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        freqs = {}
+        counts = {}
         for num in nums:
-            freqs[num] = freqs.get(num, 0) + 1
+            counts[num] = counts.get(num, 0) + 1
         
-        # next, need to group/sort numbers by frequency
+        freqs = [[] for i in range(len(nums)+1)]
 
-        groups = [[] for i in range(len(nums) + 1)]
-
-        for num, freq in freqs.items():
-            groups[freq].append(num)
+        for number, freq in counts.items():
+            freqs[freq].append(number)
 
         res = []
-
-        for i in range(len(groups) - 1, -1, -1):
-            # i is index in groups... groups[i] is an array
-            vals = groups[i]
-            for val in vals:
-                if k == 0:
+        for i in range(len(freqs) - 1, 0, -1):
+            curr_array = freqs[i]
+            for num in curr_array:
+                res.append(num)
+                if len(res) == k:
                     return res
-                res.append(val)
-                k -= 1
-        return res
+
+        
