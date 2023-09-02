@@ -3,6 +3,7 @@ class Solution:
         counts = Counter(tasks)
         maxHeap = [-count for count in counts.values()]
         heapq.heapify(maxHeap)
+
         q = deque()
 
         time = 0
@@ -13,9 +14,11 @@ class Solution:
                 time = q[0][1]
             else:
                 count = 1 + heapq.heappop(maxHeap)
-                if count:
+                if count != 0:
                     q.append([count, time + n])
             if q and q[0][1] == time:
                 heapq.heappush(maxHeap, q.popleft()[0])
         return time
+
+
         
