@@ -5,35 +5,34 @@
 #         self.next = next
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
-        # merge lists two at a time
-
-
-        def mergeTwo(l1, l2):
+        def mergeTwoLists(l1, l2):
             dummy = ListNode()
             cur = dummy
             while l1 and l2:
-                if l1.val <= l2.val:
+                if l1.val < l2.val:
                     cur.next = l1
                     l1 = l1.next
                 else:
                     cur.next = l2
                     l2 = l2.next
                 cur = cur.next
-
             if l1:
                 cur.next = l1
-            elif l2:
+            else:
                 cur.next = l2
             return dummy.next
-
-
-        if not lists:
+        while len(lists) > 1:
+            bucket = []
+            bucket.append(lists.pop())
+            bucket.append(lists.pop())
+            lists.append(mergeTwoLists(bucket[0], bucket[1]))
+        if len(lists) > 0:
+            return lists[0]
+        else:
             return None
 
-        while len(lists) > 1:
-            l1 = lists.pop(0)
-            l2 = lists.pop(0)
-            merged = mergeTwo(l1, l2)
-            lists.append(merged)
+
+
+
         
-        return lists[0]
+        
