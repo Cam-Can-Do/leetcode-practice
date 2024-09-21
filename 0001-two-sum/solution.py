@@ -1,10 +1,9 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        contained = set()
-
-        for i, num in enumerate(nums):
-            if target - num in contained:
-                return [i, nums.index(target-num)]
-            contained.add(num)
-        return False
+        contained = {} # maps value to index
+        for i, n in enumerate(nums):
+            diff = target - n
+            if diff in contained:
+                return [contained[diff], i]
+            contained[n] = i
         
