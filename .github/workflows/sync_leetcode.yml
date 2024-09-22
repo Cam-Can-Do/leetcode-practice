@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps;
+    steps:
       - name: Sync
         uses: joshcai/leetcode-sync@v1.7
         with:
