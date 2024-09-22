@@ -1,18 +1,14 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        closings = {')':'(', ']':'[','}':'{'}
-        stack = []
+        close_to_open = {')':'(', '}':'{', ']':'['}
+        
+        ordering = []
 
         for char in s:
-            if char in closings and stack:
-                if stack[-1] != closings[char]:
-                    return False
-                else:
-                    stack.pop()
-            else:
-                stack.append(char)
-        if len(stack) > 0:
-            return False
-        else:
-            return True
-
+            if char not in close_to_open:
+                ordering.append(char)
+                continue
+            if not ordering or ordering[-1] != close_to_open[char]:
+                return False
+            ordering.pop()
+        return not ordering
