@@ -1,14 +1,13 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         close_to_open = {')':'(', '}':'{', ']':'['}
-        stack = []  # push most recent character (non-closing paren) to stack.
-        # when we encounter a closing paren check that the top of stack is the corresponding opening paren
-        
-        for c in s:
-            if c not in close_to_open:
-                stack.append(c)
+        stack = []
+
+        for char in s:
+            if char not in close_to_open:
+                stack.append(char)
                 continue
-            if not stack or stack[-1] != close_to_open[c]:
+            if not stack or close_to_open[char] != stack[-1]:
                 return False
             stack.pop()
         return not stack
