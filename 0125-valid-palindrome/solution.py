@@ -5,4 +5,3 @@ class Solution:
             if char.isalnum():
                 norm += char.lower()
         return norm == norm[::-1]
-
