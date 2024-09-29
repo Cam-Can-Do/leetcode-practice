@@ -1,13 +1,13 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        close_to_open = {')':'(', '}':'{', ']':'['}
+        map = {')':'(', '}':'{', ']':'['}
         stack = []
 
-        for char in s:
-            if char not in close_to_open:
-                stack.append(char)
+        for c in s:
+            if c not in map:
+                stack.append(c)
                 continue
-            if not stack or close_to_open[char] != stack[-1]:
+            if not stack or stack[-1] != map[c]:
                 return False
             stack.pop()
         return not stack
